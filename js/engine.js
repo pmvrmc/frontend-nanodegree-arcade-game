@@ -80,7 +80,18 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
+    }
+
+    function checkCollisions(){
+      allEnemies.forEach(function(enemy){
+        if(near(player,enemy)){
+          player.reset();
+        }
+      });
+    }
+    function near(element1, element2){
+      return element1.x > element2.x - 55 && element1.x < element2.x + 50 && element1.y === element2.y;
     }
 
     /* This is called by the update function  and loops through all of the
